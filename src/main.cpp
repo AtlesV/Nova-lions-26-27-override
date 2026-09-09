@@ -8,12 +8,12 @@
 // Chassis constructor
 ez::Drive chassis(
     // These are your drive motors, the first motor is used for sensing!
-    {-18, -20, -17},     // Left Chassis Ports (negative port will reverse it!)
-    {11, 12, 13},  // Right Chassis Ports (negative port will reverse it!)
+    {12, -4, -6},     // Left Chassis Ports (negative port will reverse it!)
+    {-1, 8, 11},  // Right Chassis Ports (negative port will reverse it!)
 
-    17,      // IMU Port
+    9,      // IMU Port
     3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
-    300);   // Wheel RPM = cartridge * (motor gear / wheel gear)
+    360);   // Wheel RPM = cartridge * (motor gear / wheel gear)
 
 // Uncomment the trackers you're using here!
 // - `8` and `9` are smart ports (making these negative will reverse the sensor)
@@ -58,8 +58,8 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-      {"Right side\n\nRight side code.", middleQuad},
-      {"Left side\n\nLeft side code.", rightQuad},
+      {"Right side\n\nMiddle quadrant code.", middleQuad},
+      {"Left side\n\nRight quadrant code.", rightQuad},
       {"Skills\n\nSkills code", skills}
   });
 
