@@ -234,6 +234,7 @@ void opcontrol() {
 
   int driverStartTime = pros::millis();
   bool rumbleDone = false;
+  chassis.opcontrol_speed_max_set(127);
 
   while (true) {
     // Gives you some extras to make EZ-Template ezier
@@ -253,6 +254,14 @@ void opcontrol() {
     if (elapsed >= 85000 && !rumbleDone) {
       endgameRumble();
       rumbleDone = true;
+    }
+
+    if (master.get_digital(DIGITAL_R2)){
+      intakeMotor.move(127);
+    } else if (master.get_digital(DIGITAL_L2)){
+      intakeMotor.move(-127);
+    } else {
+      intakeMotor.brake();
     }
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
